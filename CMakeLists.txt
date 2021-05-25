@@ -23,6 +23,8 @@
 
 cmake_minimum_required(VERSION 3.2)
 
+project(icu)
+
 # cache variables
 set(BUILD_ICU OFF CACHE BOOL "Enable compilation of ICU")
 set(ICU_BUILD_VERSION OFF CACHE STRING "ICU version to build")
@@ -37,24 +39,7 @@ list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules")
 # declare interface target for ICU
 add_library(icu INTERFACE)
 
-if (SYSTEM_ICU)
-    # try to find icu
-    find_package(ICU COMPONENTS data uc i18n io le lx REQUIRED)
-else()
-    # build own or or use prebuilts
-    
-    # set up target
-    if (BUILD_ICU)
-        include(BuildICU)
-    else()
-        include(PrebuiltICU)
-    endif()
-
-    if (NOT ICU_STATIC)
-        include(GNUInstallDirs)
-        install(FILES ${ICU_LIBRARIES} DESTINATION ${CMAKE_INSTALL_LIBDIR})
-    endif()
-endif()
+include(PrebuiltICU)
 
 # link system, cross or host libraries to interface target
 target_link_libraries(icu INTERFACE ${ICU_LIBRARIES})

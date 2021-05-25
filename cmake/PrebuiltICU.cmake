@@ -70,3 +70,21 @@ ExternalProject_Add(icu_pre
 )
 set(ICU_TARGET icu_pre)
 add_dependencies(icu icu_pre)
+
+install(FILES ${ICU_LIBRARIES}
+  TYPE LIB
+  PERMISSIONS OWNER_WRITE OWNER_READ
+                          GROUP_READ
+                          WORLD_READ
+)
+
+install(DIRECTORY ${ICU_INCLUDE_DIRS}/
+  TYPE INCLUDE
+  DIRECTORY_PERMISSIONS OWNER_WRITE OWNER_READ OWNER_EXECUTE
+                                    GROUP_READ GROUP_EXECUTE
+                                    WORLD_READ WORLD_EXECUTE
+  FILE_PERMISSIONS OWNER_WRITE OWNER_READ
+                               GROUP_READ
+                               WORLD_READ
+)
+
