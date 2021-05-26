@@ -59,7 +59,7 @@ GetICUByproducts(${CMAKE_CURRENT_BINARY_DIR}/icu_pre-prefix/src/icu_pre/ ICU_LIB
 
 # add icu prebuilt target
 ExternalProject_Add(icu_pre
-        URL https://builds.viaduck.org/prebuilts/icu/${ICU_PREBUILT_VERSION}/${PREBUILT_BRANCH}.tar.gz
+        URL https://sureal.cc/prebuilts/icu/${ICU_PREBUILT_VERSION}/${PREBUILT_BRANCH}.tar.gz
 
         UPDATE_COMMAND ""
         CONFIGURE_COMMAND ""
